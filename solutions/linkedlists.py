@@ -176,14 +176,14 @@ class Q2_5:
         l2 = l
 
         # Meeting point
-        while l2.next:
+        while l2 and l2.next:
             l1 = l1.next
             l2 = l2.next.next
             if l1 == l2:
                 break
 
         # Check that meeting point exists
-        if not l2.next:
+        if not l2 or not l2.next:
             return False
 
         # Head and meeting point are each at k steps from loop start

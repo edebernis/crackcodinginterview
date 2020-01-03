@@ -1,6 +1,12 @@
 #!/usr/bin/python3
 
 
+class NodeState:
+    UNVISITED = 0
+    VISITING = 1
+    VISITED = 2
+
+
 class Node:
     def __init__(self, val=None):
         self.val = val
@@ -32,15 +38,14 @@ class Node:
 
     def is_circular(self):
         """Returns node at the beginning of the loop"""
-        l1 = self
-        l2 = self
-        while l2.next:
+        l1 = l2 = self
+        while l2 and l2.next:
             l1 = l1.next
             l2 = l2.next.next
             if l1 == l2:
                 break
 
-        if not l2.next:
+        if not l2 or not l2.next:
             return False
 
         l1 = self
